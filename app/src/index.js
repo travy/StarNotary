@@ -43,14 +43,13 @@ const App = {
   lookUp: async function () {
     const { lookUptokenIdToStarInfo } = this.meta.methods;
     const starId = document.getElementById('lookid').value;
-    const notificationArea = document.getElementById('nameOfStarByItsId');
+    const notificationArea = document.getElementById('status');
 
     let starName = await lookUptokenIdToStarInfo(starId).call();
     if (starName == '') {
       console.log('Star ID does not exist');
       notificationArea.innerHTML = "Star ID " + starId + " does not exist";
     } else {
-      console.log(starName);
       notificationArea.innerHTML = "Star Name:  " + starName;
     }
   }

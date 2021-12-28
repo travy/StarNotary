@@ -2,9 +2,10 @@ pragma solidity >=0.4.24;
 
 //Importing openzeppelin-solidity ERC-721 implemented Standard
 import "../node_modules/openzeppelin-solidity/contracts/token/ERC721/ERC721.sol";
+import "../node_modules/openzeppelin-solidity/contracts/token/ERC721/ERC721Metadata.sol";
 
 // StarNotary Contract declaration inheritance the ERC721 openzeppelin implementation
-contract StarNotary is ERC721 {
+contract StarNotary is ERC721, ERC721Metadata {
 
     // Star data
     struct Star {
@@ -15,14 +16,18 @@ contract StarNotary is ERC721 {
     // name: Is a short name to your token
     // symbol: Is a short string like 'USD' -> 'American Dollar'
     
-    string public constant name = "Star Identification Unit";
-    string public constant symbol = "SIU";
-    uint8 public constant decimals = 18;
+    //string public constant name = "Star Identification Unit";
+    //string public constant symbol = "SIU";
+    //uint8 public constant decimals = 18;
 
     // mapping the Star with the Owner Address
     mapping(uint256 => Star) public tokenIdToStarInfo;
     // mapping the TokenId and price
     mapping(uint256 => uint256) public starsForSale;
+
+    constructor (string memory _name, string memory _symbol) ERC721Metadata(_name, _symbol) public {
+
+    }
 
     
     // Create Star using the Struct
